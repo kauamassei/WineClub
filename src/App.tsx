@@ -1,18 +1,14 @@
 import React from "react";
-import Banner from "./components/Banner";
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
-import Pricing from "./components/Pricing";
-import Services from "./components/Services";
+import LandingPage from "./components/LandingPage";
+import AppRoutes from "./routes";
+
+
 
 function App() {
   return (
     <>
-      <Hero />
-      <Services />
-      <Banner />
-      <Pricing />
-      <Footer />
+      <AppRoutes />
+
     </>
   );
 }

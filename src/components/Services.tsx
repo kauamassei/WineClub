@@ -1,154 +1,158 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Services = () => {
+
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const services = [
+    {
+      title: "Seleção Premium",
+      desc: "Curadoria exclusiva com os melhores vinhos nacionais e importados.",
+      color: "#800020",
+      icon: "→",
+    },
+    {
+      title: "Ofertas Exclusivas",
+      desc: "Aproveite promoções especiais em rótulos selecionados.",
+      color: "#C9A227",
+      icon: "⚡",
+    },
+    {
+      title: "Recomendações Inteligentes",
+      desc: "Descubra vinhos ideais com base no seu gosto.",
+      color: "#800020",
+      icon: "📊",
+    },
+    {
+      title: "Compra Segura",
+      desc: "Seus dados protegidos com tecnologia avançada.",
+      color: "#800020",
+      icon: "🔒",
+    },
+    {
+      title: "Experiência Social",
+      desc: "Compartilhe avaliações com a comunidade.",
+      color: "#C9A227",
+      icon: "👥",
+    },
+    {
+      title: "Entrega Rápida",
+      desc: "Receba seus vinhos com rapidez e segurança.",
+      color: "#C9A227",
+      icon: "🚚",
+    },
+  ];
+
   return (
-    <div className="my-14">
-      <section className="py-24 bg-[#f8f5f2] transition-colors duration-300">
-        <div className="container mx-auto px-6">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-black">
-              <span className="text-black">Experiências premium</span> para amantes de vinho
-            </h2>
-            <p className="text-gray-700 text-xl max-w-2xl mx-auto font-extralight">
-              Tudo o que você precisa para descobrir, escolher e apreciar vinhos com sofisticação.
-            </p>
-          </div>
+    <div className="bg-[#0f0f0f] py-24">
+      <div className="max-w-7xl mx-auto px-6">
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* HEADER */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <motion.h2
+            variants={item}
+            className="text-4xl md:text-5xl font-bold text-white mb-4"
+          >
+            Experiências <span className="text-[#800020]">premium</span>
+          </motion.h2>
 
-            {/* Card 1 */}
-            <div className="p-8 rounded-xl border transition-all group 
-              border-gray-200 hover:border-[#800020]/40 hover:scale-105 hover:shadow-xl bg-white text-black">
-              
-              <div className="rounded-lg w-12 h-12 flex items-center justify-center mb-6 
-                bg-[#800020]/10 group-hover:bg-[#800020]/20 transition-all">
-                
-                <svg className="h-6 w-6 text-[#800020]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
+          <motion.p
+            variants={item}
+            className="text-gray-400 max-w-2xl mx-auto"
+          >
+            Tudo o que você precisa para descobrir, escolher e apreciar vinhos com sofisticação.
+          </motion.p>
+        </motion.div>
+
+        {/* GRID */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+
+          {services.map((service, i) => (
+            <motion.div
+              key={i}
+              variants={item}
+              whileHover={{ scale: 1.02 }}
+              className="group p-8 rounded-xl
+              bg-white/5 backdrop-blur-lg
+              border border-white/10
+              text-white
+              transition-all duration-500 ease-out
+              hover:border-[#800020]/40 hover:shadow-2xl"
+            >
+
+              {/* ICON */}
+              <div
+                className="w-12 h-12 flex items-center justify-center rounded-lg mb-6 text-lg"
+                style={{ backgroundColor: `${service.color}20` }}
+              >
+                <span style={{ color: service.color }}>
+                  {service.icon}
+                </span>
               </div>
 
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                Seleção Premium
+              {/* TITLE */}
+              <h3 className="text-xl font-semibold mb-3">
+                {service.title}
               </h3>
-              <p className="text-gray-600 font-light leading-relaxed">
-                Curadoria exclusiva com os melhores vinhos nacionais e importados.
+
+              {/* DESC */}
+              <p className="text-gray-400 font-light leading-relaxed">
+                {service.desc}
               </p>
-            </div>
 
-            {/* Card 2 */}
-            <div className="p-8 rounded-xl border transition-all group 
-              border-gray-200 hover:border-[#800020]/40 hover:scale-105 hover:shadow-xl bg-white text-black">
-              
-              <div className="rounded-lg w-12 h-12 flex items-center justify-center mb-6 
-                bg-[#C9A227]/10 group-hover:bg-[#C9A227]/20 transition-all">
-                
-                <svg className="h-6 w-6 text-[#C9A227]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-              </div>
+            </motion.div>
+          ))}
 
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                Ofertas Exclusivas
-              </h3>
-              <p className="text-gray-600 font-light leading-relaxed">
-                Aproveite promoções especiais e preços diferenciados em rótulos selecionados.
-              </p>
-            </div>
+        </motion.div>
 
-            {/* Card 3 */}
-            <div className="p-8 rounded-xl border transition-all group 
-              border-gray-200 hover:border-[#800020]/40 hover:scale-105 hover:shadow-xl bg-white text-black">
-              
-              <div className="rounded-lg w-12 h-12 flex items-center justify-center mb-6 
-                bg-[#800020]/10 group-hover:bg-[#800020]/20 transition-all">
-                
-                <svg className="h-6 w-6 text-[#800020]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10"></path>
-                </svg>
-              </div>
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="mt-20 text-center"
+        >
+          <button className="bg-[#800020] text-white px-10 py-3 rounded-full font-semibold
+          hover:bg-[#5a0016] hover:scale-[1.02]
+          transition-all duration-300">
+            Explorar todos os vinhos
+          </button>
+        </motion.div>
 
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                Recomendações Inteligentes
-              </h3>
-              <p className="text-gray-600 font-light leading-relaxed">
-                Descubra vinhos ideais com base no seu gosto e ocasiões especiais.
-              </p>
-            </div>
-
-            {/* Card 4 */}
-            <div className="p-8 rounded-xl border transition-all group 
-              border-gray-200 hover:border-[#800020]/40 hover:scale-105 hover:shadow-xl bg-white text-black">
-              
-              <div className="rounded-lg w-12 h-12 flex items-center justify-center mb-6 
-                bg-[#800020]/10 group-hover:bg-[#800020]/20 transition-all">
-                
-                <svg className="h-6 w-6 text-[#800020]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2"></path>
-                </svg>
-              </div>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                Compra Segura
-              </h3>
-              <p className="text-gray-600 font-light leading-relaxed">
-                Seus dados protegidos com tecnologia de segurança avançada.
-              </p>
-            </div>
-
-            {/* Card 5 */}
-            <div className="p-8 rounded-xl border transition-all group 
-              border-gray-200 hover:border-[#800020]/40 hover:scale-105 hover:shadow-xl bg-white text-black">
-              
-              <div className="rounded-lg w-12 h-12 flex items-center justify-center mb-6 
-                bg-[#C9A227]/10 group-hover:bg-[#C9A227]/20 transition-all">
-                
-                <svg className="h-6 w-6 text-[#C9A227]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 20H7"></path>
-                </svg>
-              </div>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                Experiência Social
-              </h3>
-              <p className="text-gray-600 font-light leading-relaxed">
-                Compartilhe avaliações e descubra recomendações da comunidade.
-              </p>
-            </div>
-
-            {/* Card 6 */}
-            <div className="p-8 rounded-xl border transition-all group 
-              border-gray-200 hover:border-[#800020]/40 hover:scale-105 hover:shadow-xl bg-white text-black">
-              
-              <div className="rounded-lg w-12 h-12 flex items-center justify-center mb-6 
-                bg-[#C9A227]/10 group-hover:bg-[#C9A227]/20 transition-all">
-                
-                <svg className="h-6 w-6 text-[#C9A227]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 5h16"></path>
-                </svg>
-              </div>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                Entrega Rápida
-              </h3>
-              <p className="text-gray-600 font-light leading-relaxed">
-                Receba seus vinhos com rapidez e segurança diretamente em casa.
-              </p>
-            </div>
-
-          </div>
-
-          {/* CTA */}
-          <div className="mt-16 text-center">
-            <button className="bg-linear-to-r from-[#800020] to-[#5a0016] text-white font-light rounded-md px-8 py-3 hover:opacity-90 transition-all">
-              Explorar todos os vinhos
-            </button>
-          </div>
-
-        </div>
-      </section>
+      </div>
     </div>
   );
 };
